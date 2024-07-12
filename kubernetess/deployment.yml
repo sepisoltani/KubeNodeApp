@@ -1,0 +1,21 @@
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubenodeapp-deployment
+  namespace: kubenodeapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: kubenodeapp
+  template:
+    metadata:
+      labels:
+        app: kubenodeapp
+    spec:
+      containers:
+        - name: kubenodeapp
+          image: YOUR_REGION-docker.pkg.dev/YOUR_PROJECT_ID/YOUR_REPO_NAME/kubenodeapp:latest
+          ports:
+            - containerPort: 3000
